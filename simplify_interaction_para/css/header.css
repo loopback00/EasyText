@@ -1,0 +1,74 @@
+.logo{
+    display: flex;
+    background-color: blueviolet;
+    /* background-color:#3399CC; */
+    position: absolute;
+    top: 67px;
+    /* left: 10px; */
+    margin-left: 15%;
+    width: 35%;
+    height: 10%;
+    justify-content: left;
+    align-items: center;
+}
+.logo span{
+    margin-left: 5px;
+    font-size: 33px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+.meanu{
+    display: flex;
+    width: 35.5%;
+    height: 10%;
+    position: absolute;
+    margin-right: 14.5%;
+    /* background-color: blueviolet; */
+    background-color:blueviolet;
+    top: 67px;
+    left: 50%;
+    justify-content: right;
+    align-items: center;
+    
+}
+.meanu button{
+    border:none;
+    border-radius:10px;
+    margin-right: 20px;
+    font-size: 30px;
+    width: 80px;
+    height: 75px;
+    background-color: yellow;
+    /* background-color:#FF6666 */
+}
+.meanu select{
+    text-align-last: center;
+    margin-left: 10px;
+    width: 220px;
+    height: 60px; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+     outline: 0; 
+    background: yellow;
+    color: black;
+    border: 2px solid black;
+    padding: 4px;
+    border-radius: 9px;
+}
+.meanu div{
+    text-align-last: center;
+}
+.meanu button[title]{
+    position: relative;
+}
+.meanu button[title]:hover ::after{
+    content:attr(title);
+    background-color:bisque;
+    color: black;
+    font-size: 5px;
+    padding: auto;
+}

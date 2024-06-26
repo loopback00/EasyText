@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= initial-scale=1.0">
+    <script type="text/javascript" src="src/vue.js"></script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/operate.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <script src="src/browser.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/domUtils.js"></script>
+    <script src="src/range.js"></script>
+    <script src="src/index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button title="Hightlight Sentence" style="background-image:url(assets/highlight.svg) " onclick="enableNiteWriterPen();">7</button>
+        <button title="Erase highlight" style="background-image:url(assets/erase2.svg) " onclick="removeEffect();">8</button>
+        <button @click="process_identify()">1</button>
+        <button @click="getOperateData()">2</button>
+        <button @click="getOperateData1()">3</button>
+        <span id="h1" v-html="message1"></span>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                message1: 'i like eating <i class="nite-writer-pen">apples</i>.',
+                message2: '<i class="nite-writer-pen">i do not like eating apples</i>',
+                identify:[
+                    [["word"],["i like eating apples."],["eating apples"]],
+                    [["sentence"],["i do not like eating apples."],["i do not like eating apples"]],
+                    [["word"],["i like swimming."],["swimming"]],
+
+                ],
+                operatefinshed:[],
+                // temp:[],
+            },
+            methods: {
+                process_identify(){
+                    data=this.identify
+                    showText=''
+                    for(let i=0;i<data.length;i++){
+                        // console.log(data[i])
+                        console.log(1)
+                        if (data[i][0]=="2"){
+                            console.log(2)
+                            temp=highlightPartialText_word(data[i])
+                            console.log(4)
+                            console.log(temp)
+                            showText=showText+temp
+                        }
+                        else if(data[i][0]=="1"){
+                            
+                        }
+                        else {
+                            temp_2=highlightPartialText_sentence(data[i])
+                            showText=showText+temp_2
+                        }
+                    }
+                    this.message1=showText     
+                                           
+                },
+                getOperateData(){
+                    let text=this.message1
+                    let regex = /[^.!?;]+[.!?;]/g;
+                    let matches = text.match(regex);
+                    let result = matches.map(match => match.trim());
+                    let textlist=[]
+                    console.log(result)
+                    for(let i=0;i<result.length;i++){
+                        let targetText = result[i].replace(/<[^>]+>/g, '');
+                        mydict={}
+                        mydict["originalText"]=targetText
+                        mydict["highlightElement"]=""
+                        console.log(targetText)
+                        let regex = /<i class="nite-writer-pen">(.*?)<\/i>/g;
+                        let matches = result[i].matchAll(regex);
+                        for (const match of matches) {
+                            console.log(2)
+                            mydict["highlightElement"]=mydict["highlightElement"]+match[1]+" "
+                            console.log(match[1]);
+                        }
+                        textlist[i]=mydict
+                    }
+                    console.log(textlist[0])
+                    console.log(textlist[1])
+                    this.operatefinshed=textlist
+                    // this.temp=textlist
+                    // console.log("this is temp",this.temp)
+                },
+                getOperateData1(){
+                    var spanElement = document.getElementById('h1');
+                    console.log(spanElement)
+                    let text=spanElement.innerHTML
+                    console.log("text",text)
+                    let regex = /[^.!?;]+[.!?;]/g;
+                    let matches = text.match(regex);
+                    let result = matches.map(match => match.trim());
+                    let textlist=[]
+                    console.log(result)
+                    for(let i=0;i<result.length;i++){
+                        let targetText = result[i].replace(/<[^>]+>/g, '');
+                        mydict={}
+                        mydict["originalText"]=targetText
+                        mydict["highlightElement"]=""
+                        console.log(targetText)
+                        let regex = /<i class="nite-writer-pen">(.*?)<\/i>/g;
+                        let matches = result[i].matchAll(regex);
+                        for (const match of matches) {
+                            console.log(2)
+                            mydict["highlightElement"]=mydict["highlightElement"]+match[1]+" "
+                            console.log(match[1]);
+                        }
+                        textlist[i]=mydict
+                    }
+                    console.log(textlist[0])
+                    console.log(textlist[1])
+                    this.operatefinshed=textlist
+                    // var highlightedElements = spanElement.querySelectorAll('.nite-writer-pen, .nite-writer-pen_2');
+                    // console.log(highlightedElements)
+                    // var highlightedText = [];
+                },
+               
+            },
+        
+            computed: {
+                combinetext() {
+                    return this.message1+this.message2
+                }
+            },
+        })
+        function highlightPartialText_word(data) {
+            console.log(3)
+            var fullText = data[1].join("");
+            var partialText = data[2].join(" ");
+            console.log(fullText)
+            console.log(partialText)
+
+            var highlightedText = fullText;
+            var keywords = partialText.split(" ");
+
+            keywords.forEach(function(keyword) {
+                var trimmedKeyword = keyword.trim();
+                if (trimmedKeyword !== '') {
+                    var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+                    highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen">$&</i>');
+                }
+            });
+
+            return highlightedText;
+        }
+        function highlightPartialText_sentence(data) {
+            console.log('2')
+            var highlightedText = data[1].join("");
+            var sentences = data[2].join("").match(/[^.?!]+[.?!]*/g); // 将partialText拆分成句子数组
+            if (sentences) {
+                sentences.forEach(function(sentence) {
+                    var trimmedSentence = sentence.trim();
+                    if (trimmedSentence !== '') {
+                        var escapedSentence = trimmedSentence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // 对句子中的特殊字符进行转义
+                        var regex = new RegExp(escapedSentence, 'g');
+                        highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen">' + trimmedSentence + '</i>');
+                    }
+                });
+            }   
+        return highlightedText;
+        }
+
+
+    </script>
+</body>
+</html>

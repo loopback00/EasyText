@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="src/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .highlight {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <span v-for="(sentence, index) in sentences1" :key="sentence">
+                <span v-html="sentence" @click="highlight(index)"></span>
+            </span>
+        </div>
+        <div>
+            <span v-for="(sentence, index) in sentences2" :key="sentence">
+                <span v-html="sentence" :class="{ highlight: highlightedIndex === index }"></span>
+            </span>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                article1: "这是一个句子.这是另一个句子</br>.还有第三个句子.",
+                article2: "这是四个句子.这是另五个句子</br>.还有第六个句子.",
+                highlightedIndex: -1,
+            },
+            computed: {
+                sentences1() {
+                    return this.article1.split(/[.?!]/).filter(sentence => sentence.trim() !== "");
+                },
+                sentences2() {
+                    return this.article2.split(/[.?!]/).filter(sentence => sentence.trim() !== "");
+                }
+            },
+            methods: {
+                highlight(index) {
+                    this.highlightedIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

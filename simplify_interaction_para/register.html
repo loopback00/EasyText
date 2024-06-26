@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/Textarea.css">
+    <!-- <link rel="stylesheet" href="css/common/ui/Select.css"> -->
+    <link rel="stylesheet" href="css/operate.css">
+    <script src="src/ruler.js"></script>
+    <!-- <link rel="stylesheet" href="css/logo.css"> -->
+    <script src="src/browser.js"></script>
+    <script src="src/ruler.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/domUtils.js"></script>
+    <script src="src/range.js"></script>
+    <script src="src/index.js"></script>
+    <title>visitors_register</title>
+    
+</head>
+<body>
+    <div id="app">
+        <el-container>
+            <el-header >Here is a survey combining these metrics:</el-header>
+            <el-main>
+                <el-row>
+                    <div>
+                        1. Reading Level: How would you rate your reading level? 
+                        <el-radio v-model="radio1" label="1">Beginner</el-radio>
+                        <el-radio v-model="radio1" label="2">Intermediate</el-radio>
+                        <el-radio v-model="radio1" label="3">Advanced</el-radio> 
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        2. Average Reading Time: How long does it take you to read a standard page (about 300 words)?
+                        <el-radio v-model="radio2" label="1">Less than 1 minute</el-radio>
+                        <el-radio v-model="radio2" label="2">1-2 minutes</el-radio>
+                        <el-radio v-model="radio2" label="3">More than 2 minutes</el-radio>
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        3. Reading Frequency: How often do you read the Books materials?
+                        <el-radio v-model="radio3" label="1">Daily</el-radio>
+                        <el-radio v-model="radio3" label="2">Weekly</el-radio>
+                        <el-radio v-model="radio3" label="3">Monthly</el-radio>
+                        <el-radio v-model="radio3" label="4">Rarely</el-radio>  
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        4. Reading Frequency: How often do you read the Article materials?
+                        <el-radio v-model="radio4" label="1">Daily</el-radio>
+                        <el-radio v-model="radio4" label="2">Weekly</el-radio>
+                        <el-radio v-model="radio4" label="3">Monthly</el-radio>
+                        <el-radio v-model="radio4" label="4">Rarely</el-radio>  
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        5. Reading Frequency: How often do you read the Article materials?
+                        <el-radio v-model="radio5" label="1">Daily</el-radio>
+                        <el-radio v-model="radio5" label="2">Weekly</el-radio>
+                        <el-radio v-model="radio5" label="3">Monthly</el-radio> 
+                        <el-radio v-model="radio5" label="4">Rarely</el-radio> 
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        
+                        6. Types of Material:What types of texts do you commonly read? (Select all that apply)
+                     
+                            <el-checkbox v-model="radio6" label="1">Fiction</el-checkbox>
+                            <el-checkbox v-model="radio61" label="2">Non-fiction</el-checkbox>
+                            <el-checkbox v-model="radio62" label="3">Academic papers</el-checkbox>
+                            <el-checkbox v-model="radio63" label="4">News articles</el-checkbox>
+                            <el-checkbox v-model="radio64" label="5">Technical documents</el-checkbox>    
+                    
+
+                      
+                        </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        7. Vocabulary Self-Assessment: How would you describe your vocabulary range?
+                        <el-radio v-model="radio7" label="1">Limited</el-radio>
+                        <el-radio v-model="radio7" label="2">Moderate</el-radio>
+                        <el-radio v-model="radio7" label="3">Extensive</el-radio>  
+                    </div>
+                </el-row>
+                <el-row>
+                    <div>
+                        8. Comprehension Self-Assessment: How well do you understand texts you read?
+                        <el-radio v-model="radio8" label="1">Fully</el-radio>
+                        <el-radio v-model="radio8" label="2">Mostly</el-radio>
+                        <el-radio v-model="radio8" label="3">Sometimes</el-radio> 
+                        <el-radio v-model="radio8" label="4">Rarely</el-radio>   
+                    </div>
+                </el-row>
+               
+            </el-main>
+            <el-footer>
+                <el-col :span="6">
+                    <div style="height: 20px;"></div>
+                </el-col>
+                <el-col :span="12">
+                    <el-button type="primary" icon="el-icon-caret-right" style="width: 75%;font-size: 20px;" @click="Register()">Finish</el-button>
+                </el-col>
+                <el-col :span="6">
+                    <div style="height: 20px;"></div>
+                </el-col>
+                
+            </el-footer>
+        </el-container>
+       
+    </div>
+   
+    
+
+
+    
+</body>
+<link rel="stylesheet" href="./element/element.css">
+<script src="./element/vue.js"></script>
+<script src="./element/element.js"></script>
+<script  src="src/axios.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            radio1:'1',
+            radio2:'1',
+            radio3:"1",
+            radio4:"1",
+            radio5:"1",
+            radio6:"1",
+            radio61:"1",
+            radio62:"1",
+            radio63:"1",
+            radio64:"1",
+            radio7:"1",
+            radio8:"1",
+           
+        },
+        methods: {
+           
+            Register(){
+                window.location.href = 'index_1.html';
+
+            }
+            
+
+            
+        },
+
+    })
+
+</script>
+<style>
+    #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 100px;
+ 
+}
+  .el-header {
+    background-color: #409EFF;
+    color: #333;
+    font-weight: bold;
+   font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    margin-left: 13%;
+    margin-right: 13%;
+    
+  }
+  el-footer {
+    background-color:white;
+    color: #333;
+    font-weight: bold;
+   font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    margin-left: 13%;
+    margin-right: 13%;
+    
+  }
+  
+  /* .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  } */
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: left;
+    line-height: 160px;
+    margin-left: 13%;
+    margin-right: 13%;
+  }
+  
+   body > .el-container {
+    margin-bottom: 40px;
+  } 
+  
+  /* .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  } */ 
+</style>
+</html>

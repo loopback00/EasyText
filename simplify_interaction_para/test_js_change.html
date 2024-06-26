@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <link rel="stylesheet" href="css/Textarea.css">
+    <link rel="stylesheet" href="css/operate.css">
+    <link rel="stylesheet" href="css/operate.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <script src="src/ruler.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/index.js"></script>
+    <script src="src/browser.js"></script>
+    <script src="src/browser.js"></script>
+    <script src="src/ruler.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/domUtils.js"></script>
+    <script src="src/range.js"></script>
+    <script src="src/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=WeakRef,BigInt"></script>
+    <title>demo</title>
+    <style>
+        .ruler-wrap {
+            position: absolute;
+            top: 25%;
+            left: 43%;
+            z-index: 2;
+            width: 100%;
+            max-width: 394px;
+            height: 60px;
+            line-height: 1px;
+            overflow: hidden;
+            margin: 0 auto 50px;
+            border-color: CornflowerBlue;
+    
+        }
+        .vocabulary-text{
+            
+            position: absolute;
+            font-size: 23px;
+            font-style: bold;
+            top: 30%;
+            left: 32%;
+            z-index: 2;
+        }
+        .textarea-like {
+        
+        border: 1px solid #ccc;
+        padding: 5px;
+        height: 710px;
+        overflow-y: auto;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 10px;
+       
+        }
+        .textarea-like span {
+            font-size: 17px;
+            outline: none;
+           border: none;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .textarea-like [contenteditable="true"] {
+            font-size: 17px;
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 90%;
+            padding: 0;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+       
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="2">
+            <div style="height: 90px;">&nbsp;</div>
+        </el-col>
+
+        <el-col :span="4" >
+            <div style="height: 6px;">&nbsp;</div>
+            <img src="assets/logo.png" style="width: 240px;">
+        </el-col>
+
+        <el-col :span="12">
+          
+            <div style="height: 60px;">
+                <span class="vocabulary-text">Your Vocabulary :</span>
+                
+                <div class="ruler-wrap" style="width: 50%;" id="ruler3"></div>
+
+                <input id="rulerText3" class="text-input" style="display: none;" type="text" readonly value=""></div>
+        </el-col>
+
+        <el-col :span="2" >
+            <div style="height: 30px;">&nbsp;</div>
+            <!-- <el-switch v-model="language" active-text="EN" inactive-text="ZH" > </el-switch> -->
+        </el-col>
+
+        <el-col :span="3">
+            <div style="height: 30px;"></div>
+            <!-- <el-button type="primary" icon="el-icon-caret-left" style="width: 80%;" @click="goBack()">{{this.backName}}</el-button> -->
+            <el-switch v-model="language" active-text="EN" inactive-text="ZH" style="left: 22%;"> </el-switch>
+        </el-col>
+
+        <el-col :span="1">
+            <div style="height: 90px;">&nbsp;</div>
+        </el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="2"><div>&nbsp;</div></el-col>
+
+        <el-col :span="9">    
+                <div class="textarea-like">
+                    
+                        <div style="font-size: 26px;">{{this.sourceText}}</div>
+                        <hr>
+                        <div  id="textarea1" contenteditable="true"  ref="editable" data-gramm="true"  v-html="showText" ></div>
+                </div>                 
+        </el-col>
+
+        <el-col :span="2"  >
+            <div style="  display: flex; flex-direction: column; align-items: center;">
+                <div style="height: 80px;">&nbsp;</div>
+                <el-button type="primary" icon="el-icon-view" style="width: 75%;" @click=" operateHighlight()"   v-loading.fullscreen.lock="fullscreenLoading" >{{this.viewName}}</el-button>
+                <div style="height: 60px;">&nbsp;</div>
+                <el-button type="primary" icon="el-icon-edit" style="width: 75%;"  onclick="enableNiteWriterPen();">{{this.editName}}</el-button>
+                <div style="height: 60px;">&nbsp;</div>
+                <el-button type="primary" icon="el-icon-delete" style="width: 75%;" onclick="removeEffect();">{{this.eraseName}}</el-button>
+                <div style="height: 60px">&nbsp;</div>
+                <el-button type="primary" icon="el-icon-check" style="width: 75%; " v-loading.fullscreen.lock="fullscreenLoading" @click=" getOperateData()">{{this.simplifyName}}</el-button>
+                <div style="height: 60px;">&nbsp;</div>
+                <el-button type="primary" icon="el-icon-refresh" style="width: 75%;" v-loading.fullscreen.lock="fullscreenLoading" @click="getOperateData1()">{{this.moreeasyName}}</el-button>
+            </div>
+        </el-col>
+        <el-col :span="9">
+            <div class="textarea-like" style="background-color: aliceblue;">
+                <div style="font-size: 26px;">{{this.targetText}}</div>
+                <hr>
+                <div id="textarea2" contenteditable="true"  ref="editable" data-gramm="true"  v-html="showSimplifyText" ></div>
+            </div>
+        </el-col>
+        <el-col :span="2"><div>&nbsp;</div></el-col>
+    </el-row>
+    
+    
+
+</div>
+</body>
+  <script type="text/javascript" src="src/axios.js"></script>
+<link rel="stylesheet" href="./element/element.css">
+<script src="./element/vue.js"></script>
+<script src="./element/element.js"></script>
+<script  src="src/axios.js"></script>
+<script>
+      Vue.config.devtools = true;
+   
+    new Vue({
+        el: '#app',
+        data:{
+            sourceText:"Source Text Area",
+            targetText:"Simplify Text Area",
+            language:"",
+            viewName:"View",
+            editName:"Edit",
+            eraseName:"Erase",
+            simplifyName:"Simplify",
+            moreeasyName:"More Easy",
+            backName:"Back Edit",
+            user_input:"MAZAR-I-SHARIF, Afghanistan — Sara Bahai is a brave woman: She is the only known female taxi driver in Afghanistan, a country where women are discouraged from working outside the home. Her unusual career choice was motivated less by ideals of equality than by the need to support a large family — and by her love of driving.</br>She still remembers her first time behind the wheel. It was shortly after the brutal and ultra-conservative Taliban government was driven from power by the 2001 U.S.-led invasion. \"I felt like I was in the sky, and I totally fell in love with driving,\" she said.</br>Bahai, who is about 40 years old, has spent much of her life defying taboos in Afghanistan, where women are widely regarded as inferior to men.</br>She never married, she said, because she had to support her parents and other family members and she feared a husband would prevent her from working. With no children of her own, she adopted two boys, now both in high school. When Taliban rebels shot and killed her brother-in-law, she took in her sister and seven nieces and nephews, so she now supports a dozen people.",
+            fullscreenLoading:false,
+            response_data:"",
+            response_data_1:"",
+            response_data_2:"",
+            SimText:"",
+
+        },
+        methods:{
+            // goBack(){
+            //     window.location.href = 'upload.html';
+            // },
+            operateHighlight(){
+                this.fullscreenLoading = true;
+                this.fullText_2=this.fullText_1
+                axios.get('http://127.0.0.1:8000/',{
+                    params:{s1:this.user_input,s2:rulerText3.value}
+                })
+            .then((response) => {
+                this.fullscreenLoading = false;
+                // console.log("data",response.data)
+            //     alert("ok",response.data)
+            this.response_data=response.data
+            this.loading=false
+            data1=this.response_data
+            showText=''
+            // alert(this.response_data)
+            for (let j=0;j<data1.length;j++){
+                temp1=""
+               
+               
+                data=data1[j][0]
+                for(let i=0;i<data.length;i++){
+                    temp=""
+                    console.log(1)
+                    if (data[i][0]=="2"){
+                        temp=highlightPartialText_word(data[i])
+                        temp1=temp1+temp
+                    }
+                    else if(data[i][0]=="1"){ 
+                        temp=data[i][1]
+                        temp1=temp1+temp
+                    }
+                    else{
+                        temp_2=highlightPartialText_sentence(data[i])
+                        temp1=temp1+temp_2}
+                }
+                showText=showText+temp1+"<br>"
+            }
+            
+            this.user_input=showText     
+          
+            })
+            .catch((error) => {
+                this.fullscreenLoading = false;
+                // this.loading=false
+                //error code 500
+              console.error(error);
+              this.loading=false
+              alert("Network error,please push button again!")
+            });
+                
+
+               
+
+            },
+            
+            getOperateData(){
+                    var spanElement = document.getElementById('textarea1');
+                    // console.log(spanElement)
+                    this.fullscreenLoading = true;
+                    let text=spanElement.innerHTML
+                    console.log("text",text)
+                    axios.get('http://127.0.0.1:8000/router2',{
+                    params:{s1:text,s2:rulerText3.value,s3:1}
+                })
+                .then((response) => {
+                    this.response_data_1=response.data
+                    console.log("length",this.response_data_1.length)
+                  
+                    this.fullscreenLoading = false;
+                    data1=this.response_data_1
+                    showText=''
+                    for (let j=0;j<data1.length;j++){
+                        temp1=""
+                        data=data1[j]
+                        for(let i=0;i<data.length;i++){
+                            if (data[i][0]=="1"){
+                                temp=highlightPartialText_word(data[i])
+                                temp1=temp1+temp
+                            }
+                            else if(data[i][0]=="0"){ 
+                                temp=data[i][1]
+                                temp1=temp1+temp
+                            }
+                            else {
+                                temp_2=highlightPartialText_sentence(data[i])
+                                temp1=temp1+temp_2
+                            }
+                        }
+                    showText=showText+temp1+"<br>"
+                    }
+                  
+                  
+                    this.SimText=showText   
+                    })
+                    .catch((error) => {  
+                    console.error(error);
+                    this.fullscreenLoading = false;
+                    alert("Network error,please push button again!")
+                    });
+                },
+            getOperateData1(){
+                var spanElement = document.getElementById('textarea2');
+                    // console.log(spanElement)
+                    this.fullscreenLoading = true;
+                    let text=spanElement.innerHTML
+                    console.log("text",text)
+                    axios.get('http://127.0.0.1:8000/router2',{
+                    params:{s1:text,s2:rulerText3.value,s3:2}
+                })
+                .then((response) => {
+                    this.response_data_2=response.data
+                    // console.log("length",this.response_data_1.length)
+                  
+                    this.fullscreenLoading = false;
+                    data1=this.response_data_2
+                    showText=''
+                    for (let j=0;j<data1.length;j++){
+                        temp1=""
+                        data=data1[j]
+                        for(let i=0;i<data.length;i++){
+                            if (data[i][0]=="1"){
+                                temp=highlightPartialText_word1(data[i])
+                                temp1=temp1+temp
+                            }
+                            else if(data[i][0]=="0"){ 
+                                temp=data[i][1]
+                                temp1=temp1+temp
+                            }
+                            else {
+                                temp_2=highlightPartialText_sentence1(data[i])
+                                temp1=temp1+temp_2
+                            }
+                        }
+                    showText=showText+temp1+"<br>"
+                    }
+                  
+                  
+                    this.SimText=showText   
+                    })
+                    .catch((error) => {  
+                    console.error(error);
+                    this.fullscreenLoading = false;
+                    alert("Network error,please push button again!")
+                    });
+                  
+
+            },
+           
+                
+        },
+        computed:{
+            showText(){
+                return "&nbsp;"+this.user_input
+            },
+            showSimplifyText(){
+                return "&nbsp;"+this.SimText
+            }
+
+        },
+        watch:{
+            language(value){
+                if(!value){
+                    this.viewName="识别"
+                    this.editName="添加高亮",
+                    this.eraseName="消去高亮",
+                    this.simplifyName="简化",
+                    this.moreeasyName="再简单一点"
+                    this.sourceText="源文本区域"
+                    this.targetText="简化文本区域"
+                    this.backName="返回编辑"
+                }  
+                else{
+                    this.viewName="View"
+                    this.editName="Edit",
+                    this.eraseName="Erase",
+                    this.simplifyName="Simplify",
+                    this.moreeasyName="More Easy",
+                    this.sourceText="Source Text Area",
+                    this.targetText="Simplified Text Area",
+                    this.backName="Back Edit"
+                }
+
+            }
+        },
+       
+       
+               
+        })
+        function highlightPartialText_word(data) {
+            console.log(3)
+            var fullText = data[1];
+            // var partialText = data[2];
+            // console.log(fullText)
+            // console.log(partialText)
+
+            var highlightedText = fullText;
+            // var keywords = partialText.split(" ");
+            var keywords=data[2]
+
+            keywords.forEach(function(keyword) {
+                var trimmedKeyword = keyword.trim();
+                if (trimmedKeyword !== '') {
+                    var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+                    highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen_2">$&</i>');
+                }
+            });
+
+            return highlightedText;
+        }
+        function highlightPartialText_word1(data) {
+            console.log(3)
+            var fullText = data[1];
+            // var partialText = data[2];
+            // console.log(fullText)
+            // console.log(partialText)
+
+            var highlightedText = fullText;
+            // var keywords = partialText.split(" ");
+            var keywords=data[2]
+
+            keywords.forEach(function(keyword) {
+                var trimmedKeyword = keyword.trim();
+                if (trimmedKeyword !== '') {
+                    var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+                    highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen_3">$&</i>');
+                }
+            });
+
+            return highlightedText;
+            // console.log(3)
+            // var fullText = data[1];
+            // var partialText = data[2];
+            // console.log(fullText)
+            // console.log(partialText)
+
+            // var highlightedText = fullText;
+            // var keywords = partialText.split(" ");
+
+            // keywords.forEach(function(keyword) {
+            //     var trimmedKeyword = keyword.trim();
+            //     if (trimmedKeyword !== '') {
+            //         var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            //         var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+            //         highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen_3">$&</i>');
+            //     }
+            // });
+
+            // return highlightedText;
+        }
+        function highlightPartialText_sentence(data) {
+            //获得最后一个标点
+            original_text=data[1]
+            var punct=data[1].slice(-1)
+            if(punct==`"`) {
+                var subStr = original_text.substr(0, original_text.length - 2)
+                punct_new=data[1].slice(-2)
+                console.log('2')
+                highlightedText='<i class="nite-writer-pen_2">' +subStr+'</i>'+punct_new
+                return highlightedText;
+               
+            }
+            else{
+                var subStr = original_text.substr(0, original_text.length - 1)
+                console.log('2')
+                highlightedText='<i class="nite-writer-pen_2">' +subStr+'</i>'+punct
+                return highlightedText;
+
+            }
+           
+        }
+        function highlightPartialText_sentence1(data) {
+            original_text=data[1]
+            var punct=data[1].slice(-1)
+            if(punct==`"`) {
+                var subStr = original_text.substr(0, original_text.length - 2)
+                punct_new=data[1].slice(-2)
+                console.log('2')
+                highlightedText='<i class="nite-writer-pen_3">' +subStr+'</i>'+punct_new
+                return highlightedText;
+               
+            }
+            else{
+                var subStr = original_text.substr(0, original_text.length - 1)
+                console.log('2')
+                highlightedText='<i class="nite-writer-pen_3">' +subStr+'</i>'+punct
+                return highlightedText;
+
+            }
+            //获得最后一个标点
+        //     original_text=data[1]
+        //     var punct=data[1].slice(-1)
+        //     var subStr = original_text.substr(0, original_text.length - 1)
+        //     console.log('2')
+        //     highlightedText='<i class="nite-writer-pen_3">' +subStr+'</i>'+punct
+        // return highlightedText;
+        }
+        // function highlightPartialText_sentence2(data) {
+        //     //获得最后一个标点
+        //     original_text=data
+        //     // var punct=data.slice(-1)
+        //     // var subStr = original_text.substr(0, original_text.length - 1)
+        //     // console.log('2')
+        //     highlightedText='<i class="nite-writer-pen_1">' +original_text+'</i>'
+            
+        // return highlightedText;
+        // }
+    var rulerText3 = document.getElementById("rulerText3");
+    rulerText3.value = 20+"00";
+    
+    ruler.initPlugin({
+        el: "ruler3", //容器id
+        height: 40, //刻度尺高度
+        maxScale: 85, //最大刻度
+        startValue: 20, //刻度开始的初始值
+        region: [10, 80], //选择刻度的区间范围
+        background: "WhiteSmoke", //刻度尺背景色
+        // color: "black", //刻度线和字体的颜色
+        markColor: "CornflowerBlue", //中心刻度标记颜色
+        isConstant: true, //是否不断地获取值
+        success: function (res) {
+            // console.log(res);
+            this.res=res
+            // console.log( rulerText3.value)
+            // console.log("1",this.res)
+            rulerText3.value = res+"00";
+        }
+    });
+ 
+</script>
+</html>

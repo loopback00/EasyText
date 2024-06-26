@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="src/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div> identify</div>
+        <button @click="changetext">change text</button>
+        <!-- 第一个页面的内容 -->
+       
+        
+        <button @click="goToPage2">Go to Page 2</button>
+        <!-- 使用其他共享的数据 -->
+        <div>
+            <!-- <span v-html="showtext"></span> -->
+            {{this.test_data}}
+        </div>
+    </div>
+      
+    <script>
+        const test_data = localStorage.getItem("data");
+        console.log("test_data:",test_data)
+        
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                identify:"this is identify", 
+                text:" zjh",
+                test_data: localStorage.getItem("data") || "",
+            },
+            methods: {
+                changetext(){
+                    this.text="this is text"
+
+                },
+                goToPage2() {
+          // 将 Vue 实例作为全局变量
+                
+                 localStorage.setItem('identify', this.identify);
+                 localStorage.setItem("text",this.text);
+
+                window.location.href = 'simplify.html';
+                },
+           
+            },
+           
+            
+        
+      })
+       
+    </script>
+    
+</body>
+</html>
