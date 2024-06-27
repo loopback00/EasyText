@@ -7,31 +7,7 @@
 </h3>
 -->
 
-<p align="center">
-    <a href="https://github.com/OpenBMB/AgentVerse/blob/main/LICENSE">
-        <img alt="License: Apache2" src="https://img.shields.io/badge/License-Apache_2.0-green.svg">
-    </a>
-    <a href="https://www.python.org/downloads/release/python-3916/">
-        <img alt="Python Version" src="https://img.shields.io/badge/python-3.9+-blue.svg">
-    </a>
-    <a href="https://github.com/OpenBMB/AgentVerse/actions/">
-        <img alt="Build" src="https://img.shields.io/github/actions/workflow/status/OpenBMB/AgentVerse/test.yml">
-    </a>
-    <a href="https://github.com/psf/black">
-        <img alt="Code Style: Black" src="https://img.shields.io/badge/code%20style-black-black">
-<!--     </a>
-    <a href="https://github.com/OpenBMB/AgentVerse/issues">
-        <img alt="Contributions: Welcome" src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat">
-    </a> -->
-    <a href="https://huggingface.co/AgentVerse">
-        <img alt="HuggingFace" src="https://img.shields.io/badge/hugging_face-play-yellow">
-    </a>
-    <a href="https://discord.gg/gDAXfjMw">
-        <img alt="Discord" src="https://img.shields.io/badge/AgentVerse-Discord-purple?style=flat">
-    </a>
-    
-    
-</p>
+
 <!--
 <p align="center">
 <img src="https://github.com/loopback00/EasyText/blob/main/screenshot.png" width="512">
