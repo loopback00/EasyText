@@ -1,5 +1,5 @@
-# EasyText
-<h1 align="center"> 🤖 AgentVerse 🪐 </h1>
+
+<h1 align="center">  Easyext 🪐 </h1>
 
 <!--
 <h3 align="center">
