@@ -1,5 +1,5 @@
 
-<h1 align="center">  Easyext 🪐 </h1>
+<h1 align="center">  Easyext </h1>
 
 <!--
 <h3 align="center">
@@ -32,12 +32,11 @@
     
     
 </p>
-
-```
+<!--
 <p align="center">
 <img src="https://github.com/loopback00/EasyText/blob/main/screenshot.png" width="512">
 </p>
-```
+-->
 
 
 
