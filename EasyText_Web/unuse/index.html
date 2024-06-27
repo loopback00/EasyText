@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Version</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/operate.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <script src="src/browser.js"></script>
+    <script src="src/ruler.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/domUtils.js"></script>
+    <script src="src/range.js"></script>
+    <script src="src/index.js"></script>
+    <script type="text/javascript" src="src/vue.js"></script>
+    <script type="text/javascript" src="src/axios.js"></script>
+    <style>
+         #plus-button {
+            font-size: 250px;
+            color: #CCCCCC;
+            position: fixed;
+            top: 350px;
+            left: 69%;
+            transform: translateX(-50%);
+            cursor: pointer;
+      /* position: absolute;
+      top: 20px;
+      left: 100px; */
+            z-index: 2;
+    }
+         .ruler-wrap {
+            position: absolute;
+            top: 80px;
+            left: 533px;
+            z-index: 2;
+            width: 60%;
+            max-width: 394px;
+            height: 60px;
+            line-height: 1px;
+            overflow: hidden;
+            margin: 0 auto 50px;
+            
+        }
+
+        .text-input{
+            position: absolute;
+            top: 104px;
+            left: 470px;
+            z-index: 2;
+            display: block;
+            width: 50px;
+            height: 25px;
+            border-radius: 10px;
+            /* background:#7B68EE ; */
+            background: yellow;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            color: black;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0 auto;
+        }
+        .text-input:focus{
+            outline: none;
+        }
+        #black-border {
+            position: absolute;
+            border-radius: 10px;
+            top: 77px;
+            left: 465px;
+            width:375px;
+            height: 70px;
+            border: 0.02px solid black;
+            box-shadow: 0px 0px 0px 1.5px black;
+            z-index: 2;
+        }
+        #button_back{
+                position: relative;
+                left: 50%;
+                top: 67%;
+                border:none;
+                border-radius:10px;
+                margin-right: 35px;
+                font-size: 30px;
+                width: 176px;
+                height: 75px;
+                background-color: #CCCCCC;
+                z-index: 2;
+            }
+        #button_next{
+                position: relative;
+                left: 50%;
+                top: 67%;
+                border:none;
+                border-radius:10px;
+                margin-right: 35px;
+                font-size: 30px;
+                width: 176px;
+                height: 75px;
+                background-color: #CCCCCC;
+                z-index: 2;
+            }
+
+    </style>
+</head>
+<body>
+   <div id="root" >
+    <div id="black-border"></div>
+    <input id="rulerText3" class="text-input" type="text" readonly value="">
+    <div class="ruler-wrap" style="width: 22%;" id="ruler3"></div>
+    
+    <!-- <div id="black-border"></div>
+    <div id="signature1">easy</div>
+    <div id="signature2">complex</div>
+    <div id="angle">
+        <div id="slider" style="width:150px ;height: 20px; "></div>
+      </div> -->
+        <div class="logo" >
+         <span>
+          <i style="color: yellow;">S</i>implify-<i style="color: yellow;">H</i>elper
+         </span>
+        </div>
+        <!-- <div id="slider" style="width:150px ;height: 20px; "></div> -->
+        <div class="meanu">
+            <!-- <div id="slider" style="width:150px ;height: 20px; "></div> -->
+            
+
+            <!-- <label for="cerflevel">cerf level：</label> -->
+            <!-- <select  id="cerflevel" v-model="select_level" name="oxofrd_level"  >
+                <option value="select">YOUR IDENTITY</option>
+                <option value="LEVEL A1">Beginner</option>
+                <option value="LEVEL A2">Basic</option>
+                <option value="LEVEL B1">Potential_Competent</option>
+                <option value="LEVEL B2">Competent</option>
+                <!-- <option value="LEVEL 5">LEVEL 5</option>
+                <option value="LEVEL 6">LEVEL 6</option> -->
+              <!-- </select> --> 
+            <button title="identify complex sentence" style="background-image:url(assets/眼睛5.svg) ;background-size: 80px 75px;" @click=" operateHighlight()"></button>
+            <button title="Hightlight Sentence" style="background-image:url(assets/highlight.svg) " onclick="enableNiteWriterPen();"></button>
+            <button title="Erase highlight" style="background-image:url(assets/erase2.svg) " onclick="removeEffect();"></button>
+
+            
+            <!-- <button title="first simplify" style="background-image:url(assets/完成.svg) ;background-size: 80px 75px;" @click="getOperateData();"></button>
+            <button title="second simplify" style="background-image:url(assets/更简单.svg) ;background-size: 80px 75px;" @click=" getOperateData1();"></button> -->
+           
+        </div>
+        <div  class="text" > 
+            <!-- <span id="span2" v-html="firstSimText_1"></span> -->
+            <span id="span1" v-html="fulltext"></span>
+        </div>
+        <div class="function">
+            <button @click=" backupload()" >upload⬅</button>
+            <button @click="gotosimplify()">➡simplify</button>
+        </div>
+        
+        <div v-if="loading" class="loader"></div>
+   </div>
+   <script type="text/javascript">
+    Vue.config.devtools = true;
+    new Vue({
+        el:"#root",
+        data:{
+            fullText_2:"In the quest for the perfect lawns, homeowners across the country are taking a shortcut -- and it is the environment that is paying the price. About eight million square meters of plastic grass is sold each year but oppositions has now spread to the highest gardening circles. The Chelsen Flower Show has banned fake grass from this year’s event, declaiming it to be not part of its ethos. The Royal Horticultural Society (RHS), which norms the annual show in west London, says it has introduced the ban because of the damage plastic grass does to the environment and biodiversity.</br>Ed Horne of the RHS said: we launched our sustainability strategy last year and fake grass is just not in line with our ethos and views on plastic. We recommend using real grass because of its environment benefits, which include supporting wildlife, alleviating flooding and cooling the environment.</br>The RHS’s decision comes as compaginers try to raise awareness of the problem fake grass cause. A Twitter account, which claims to “cut through the greenwash” of artificial grass, already has more than 20,000 followers. It is trying to encourage people to sigh two petitions, one calling for a ban on the sale of plastic grass and another calling for an “ecological damage” tax on such lawns. They have gathered 7,276 and 11,282 signatures.",
+            fullText_3:"WASHINGTON — The group pushing to replace President Andrew Jackson with a woman on the $20 bill has revealed its final four candidates after more than 256,000 votes were placed.</br>The four are former first lady Eleanor Roosevelt, abolitionist Harriet Tubman, civil rights activist Rosa Parks and Wilma Mankiller, the first woman elected chief of a major Native American tribe. Voting for the finalist is now open. The group behind the push, Women on 20s, has not yet set a specific end date for the final vote.</br>The group's original list of 100 names was winnowed down to 60 through informal discussion, then to 30 via a two-part survey and to 15 by a group of outsiders that included women's history experts. The public was then able to choose its three favorites from the list of 15 candidates, which also included feminist Betty Friedan, birth-control activist Margaret Sanger, women's suffrage leader Susan B. Anthony and conservationist Rachel Carson.</br>Women on 20s said that Roosevelt, Tubman and Parks were the top three vote recipients. It also said on its website that Mankiller, who made the list of 30 but not the list of 15 that the public voted on, was selected for the final ballot \"by popular demand\" and \"strong public sentiment that people should have the choice of a Native American to replace Andrew Jackson.\"</br>The group is targeting the $20 bill not only because the year 2020 will be the centennial of the 19th Amendment, which granted voting rights to women, but also because Jackson helped pass the Indian Removal Act of 1830, which forced Native American tribes off their lands in a relocation commonly referred to as the Trail of Tears.</br>Susan Ades Stone, the nonprofit group's executive director, said in an interview that they were not surprised by the three women whose names received the most votes.</br>\"They are probably the most recognizable names, and the ones that have been taught, to some degree, in schools,\" Stone said. \"But they are also all seen as heroic in some way. I think that's what people want: Someone who can be representative for women, who really is unequivocally someone who has touched everyone's lives.\"</br>Stone said the group hopes to approach the White House with the campaign within the next few weeks. She does not know whether they will wait to formally reach out to the White House until a winner is named. They may allow the voting to continue, in hopes White House support and attention could launch even more interest and voting.</br>\"It's possible the president will want to hear from more people,\" Stone said. \"We don't want to prematurely cut off people's opportunity to be heard.\"</br>The Treasury Department's Bureau of Engraving and Printing website says that the treasury secretary is responsible for selecting the portraits that will appear on dollar bills. According to U.S. code, only a deceased individual may appear on U.S. currency.</br>Stone said they decided to approach the White House, rather than going directly to Treasury Secretary Jack Lew, in hopes that the conversation about gender equality \"will be amplified.\" She said members tried to stay close to the code and not propose anything that might trigger the involvement of Congress, such as proposing a new denomination of dollar bills or suggesting a trio of suffragette portraits. \"We didn't want this to become a political football.\"</br>If the White House and Treasury actually do get behind the idea, Stone said, there would then be committees to choose the candidate and choose the design and engraving. \"We're not under an illusion that whoever comes out as the winner of this referendum will  be the person that will be on the bill,\" Stone said.",
+            fullText_1:  sessionStorage.getItem("data").replace("&nbsp&nbsp&nbsp&nbsp&nbsp","") || "",
+            operateSen:'',
+            operateSen_1:"",
+            firstSimText:'',
+            firstSimTextPartial:'',
+            SecondSimText:'',
+            SecondSimSenPartial:"",
+            loading:false,//加载动画的状态，控制动画的显示与隐藏
+            response_data:[],//获得后端传来的识别结果，进行渲染
+            response_data_1:[],//接受后端的第一和第二次简化结果，进行渲染
+            res:20,
+            test_data:""//control the apperence of upload file button
+            
+        },
+        methods: {
+            backupload(){
+                window.location.href = 'select_text.html';
+                // window.history.back();
+            },
+            gotosimplify(){
+                var spanElement = document.getElementById('span1');
+                let text=spanElement.innerHTML
+                text1=text.replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp","")
+                sessionStorage.setItem("res",rulerText3.value)
+                sessionStorage.setItem("editresult",text);
+                sessionStorage.setItem("data",text1)
+                window.location.href = 'index_2.html';
+            },
+            handleFileUpload() {
+            const file = this.$refs.fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.test_data = e.target.result;
+              this.fullText_1=e.target.result;
+            };
+            reader.readAsText(file);
+          },
+            
+            operateHighlight(){
+                this.loading=true
+                this.fullText_2=this.fullText_1
+                axios.get('http://127.0.0.1:8000/',{
+                    params:{s1:this.fullText_1,s2:rulerText3.value}
+                })
+            .then((response) => {
+            
+            this.response_data=response.data
+            this.loading=false
+            data1=this.response_data
+            showText=''
+            for (let j=0;j<data1.length;j++){
+                temp1=""
+                // temp1=highlightPartialText_sentence2(temp1)
+                // temp1=temp1+"</br>"
+               
+                data=data1[j][0]
+                for(let i=0;i<data.length;i++){
+                    temp=""
+                    console.log(1)
+                    if (data[i][0]=="2"){
+                        temp=highlightPartialText_word(data[i])
+                        temp1=temp1+temp
+                    }
+                    else if(data[i][0]=="1"){ 
+                        temp=data[i][1]
+                        temp1=temp1+temp
+                    }
+                    else{
+                        temp_2=highlightPartialText_sentence(data[i])
+                        temp1=temp1+temp_2}
+                }
+                showText=showText+temp1+"</br>"
+            }
+            
+            this.fullText_1=showText     
+          
+            })
+            .catch((error) => {
+                this.loading=false
+                //error code 500
+              console.error(error);
+              this.loading=false
+              alert("Network error,please push button again!")
+            });
+                
+
+            },
+            
+            getOperateData(){
+                    var spanElement = document.getElementById('span1');
+                    console.log(spanElement)
+                    this.loading=true
+                    let text=spanElement.innerHTML
+                    
+                    axios.get('http://127.0.0.1:8000/router2',{
+                    params:{s1:text,s2:rulerText3.value}
+                })
+                .then((response) => {
+                    this.response_data_1=response.data
+                    this.loading=false
+                    data1=this.response_data_1
+                    showText=''
+                    for (let j=0;j<data1.length;j++){
+                        temp1=""
+                        data=data1[j]
+                        for(let i=0;i<data.length;i++){
+                            if (data[i][0]=="1"){
+                                temp=highlightPartialText_word(data[i])
+                                temp1=temp1+temp
+                            }
+                            else if(data[i][0]=="0"){ 
+                                temp=data[i][1]
+                                temp1=temp1+temp
+                            }
+                            else {
+                                temp_2=highlightPartialText_sentence(data[i])
+                                temp1=temp1+temp_2
+                            }
+                        }
+                    showText=showText+temp1+"</br>"
+                        
+
+                    }
+                  
+                  
+                    this.firstSimText=showText   
+                    })
+                    .catch((error) => {  
+                    console.error(error);
+                    this.loading=false
+                    alert("Network error,please push button again!")
+                    });
+                },
+            getOperateData1(){
+                    var spanElement = document.getElementById('span2');
+                    console.log(spanElement)
+                    this.loading=true
+                    let text=spanElement.innerHTML
+                    axios.get('http://127.0.0.1:8000/router3',{
+                    params:{s1:text,s2:rulerText3.value}
+                })
+                .then((response) => {
+                    this.response_data_1=response.data
+                    this.loading=false
+                    data1=this.response_data_1
+                    showText=''
+                    for (let j=0;j<data1.length;j++){
+                        temp1=data1[j][0]+"</br>"
+                        data=data1[j][1]
+                        for(let i=0;i<data.length;i++){
+                            if (data[i][0]=="1"){
+                                temp=highlightPartialText_word1(data[i])
+                                temp1=temp1+temp
+                            }
+                            else if(data[i][0]=="0"){ 
+                                temp=data[i][1]
+                                temp1=temp1+temp
+                            }
+                            else {
+                                temp_2=highlightPartialText_sentence1(data[i])
+                                temp1=temp1+temp_2
+                            }
+                        }
+                    showText=showText+temp1+"</br>"
+                    }
+                    
+                   
+                    this.firstSimText=showText   
+               
+                })
+                .catch((error) => {
+                console.error(error);
+                this.loading=false
+                alert("Network error,please push button again!")
+                });
+
+            },
+           
+        },
+        computed:{
+            fulltext(){
+                var fulltext=this.fullText_1.replace(/<\/br>/g,"</br>&nbsp&nbsp&nbsp&nbsp&nbsp")
+                return "&nbsp&nbsp&nbsp&nbsp&nbsp"+fulltext
+            },
+            firstSimText_1(){
+                var fulltext=this.firstSimText.replace(/<\/br>/g,"</br>&nbsp&nbsp&nbsp&nbsp&nbsp")
+
+                return "&nbsp&nbsp&nbsp&nbsp&nbsp"+fulltext
+            },          
+        }
+    })
+   
+        
+        function highlightPartialText_word(data) {
+            console.log(3)
+            var fullText = data[1];
+            // var partialText = data[2];
+            // console.log(fullText)
+            // console.log(partialText)
+
+            var highlightedText = fullText;
+            // var keywords = partialText.split(" ");
+            var keywords=data[2]
+
+            keywords.forEach(function(keyword) {
+                var trimmedKeyword = keyword.trim();
+                if (trimmedKeyword !== '') {
+                    var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+                    highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen_2">$&</i>');
+                }
+            });
+
+            return highlightedText;
+        }
+        function highlightPartialText_word1(data) {
+            console.log(3)
+            var fullText = data[1];
+            var partialText = data[2];
+            console.log(fullText)
+            console.log(partialText)
+
+            var highlightedText = fullText;
+            var keywords = partialText.split(" ");
+
+            keywords.forEach(function(keyword) {
+                var trimmedKeyword = keyword.trim();
+                if (trimmedKeyword !== '') {
+                    var escapedKeyword = trimmedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    var regex = new RegExp('\\b' + escapedKeyword + '\\b', 'gi');
+                    highlightedText = highlightedText.replace(regex, '<i class="nite-writer-pen_3">$&</i>');
+                }
+            });
+
+            return highlightedText;
+        }
+        function highlightPartialText_sentence(data) {
+            //获得最后一个标点
+            original_text=data[1]
+            var punct=data[1].slice(-1)
+            var subStr = original_text.substr(0, original_text.length - 1)
+            console.log('2')
+            highlightedText='<i class="nite-writer-pen_2">' +subStr+'</i>'+punct
+            
+        return highlightedText;
+        }
+        function highlightPartialText_sentence1(data) {
+            //获得最后一个标点
+            original_text=data[1]
+            var punct=data[1].slice(-1)
+            var subStr = original_text.substr(0, original_text.length - 1)
+            console.log('2')
+            highlightedText='<i class="nite-writer-pen_3">' +subStr+'</i>'+punct
+        return highlightedText;
+        }
+        function highlightPartialText_sentence2(data) {
+            //获得最后一个标点
+            original_text=data
+            // var punct=data.slice(-1)
+            // var subStr = original_text.substr(0, original_text.length - 1)
+            // console.log('2')
+            highlightedText='<i class="nite-writer-pen_1">' +original_text+'</i>'
+            
+        return highlightedText;
+        }
+        $(function() {
+    $( "#slider" ).slider({
+      value:10,
+      min: 0,
+      max: 30,
+      step: 10,
+      slide: function( event, ui ) {
+        console.log(ui.value)
+        // this.value=ui.value
+        console.log("this.vaule",this.value)
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+  });
+    var rulerText3 = document.getElementById("rulerText3");
+    rulerText3.value = 20+"00";
+    ruler.initPlugin({
+        el: "ruler3", //容器id
+        height: 65, //刻度尺高度
+        maxScale: 75, //最大刻度
+        startValue: 20, //刻度开始的初始值
+        region: [7, 55], //选择刻度的区间范围
+        background: "yellow", //刻度尺背景色
+        // color: "black", //刻度线和字体的颜色
+        markColor: "blueviolet", //中心刻度标记颜色
+        isConstant: true, //是否不断地获取值
+        success: function (res) {
+            // console.log(res);
+            this.res=res
+            // console.log("1",this.res)
+            rulerText3.value = res+"00";
+        }
+    });
+    
+   </script>
+       
+   
+</body>
+</html>

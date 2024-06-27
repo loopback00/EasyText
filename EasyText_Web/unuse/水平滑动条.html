@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="src/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <!-- <input type="range" min="10" max="300" value="100" step="10" @change="showValue" style="">
+        <input type="range" min="0" max="3" value="0" step="1" @input="showValue" style="">
+            <p v-if="choice == 0">端点名称：a</p>
+            <p v-else-if="choice == 1">端点名称：b</p>
+            <p v-else-if="choice == 2">端点名称：c</p>
+            <p v-else>端点名称：d</p>
+        -->
+        <input type="range" min="0" max="3" value="0" step="1" @input="showValue" style="width: 150px">
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <span>a</span>
+            <span>b</span>
+            <span>c</span>
+            <span>d</span>
+
+    </div>
+   
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                choice:'',
+
+            },
+            methods: {
+                showValue(event){
+                    this.choice=parseInt(event.target.value);
+                    // console.log(newValue)
+           //to do:接收newValue的值
+}
+            },
+        })
+    </script>
+    
+</body>
+</html>
