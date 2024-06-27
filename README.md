@@ -34,7 +34,7 @@
 </p>
 
 <p align="center">
-<img src="./imgs/title.png" width="512">
+<img src="./assets/humanLLM.pdf" width="512">
 </p>
 
 <p align="center">
