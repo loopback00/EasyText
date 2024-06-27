@@ -33,17 +33,14 @@
     
 </p>
 
+```
 <p align="center">
 <img src="https://github.com/loopback00/EasyText/blob/main/screenshot.png" width="512">
 </p>
+```
 
-<p align="center">
-    【<a href="https://arxiv.org/abs/2308.10848">Paper</a>】 
-</p>
 
-<p align="center">
-    【English | <a href="README_zh.md">Chinese</a>】 
-</p>
+
 
 **AgentVerse** is designed to facilitate the deployment of multiple LLM-based agents in various applications. AgentVerse primarily provides two frameworks: **task-solving** and **simulation**. 
 
