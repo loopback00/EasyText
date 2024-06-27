@@ -34,7 +34,7 @@
 </p>
 
 <p align="center">
-<img src="https://github.com/loopback00/EasyText/blob/main/EasyText_Web/humanLLM.pdf" width="512">
+<img src="https://github.com/loopback00/EasyText/blob/main/EasyText_Web/humanLLM.png" width="512">
 </p>
 
 <p align="center">
