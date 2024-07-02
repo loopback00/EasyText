@@ -58,8 +58,8 @@ content that is still highlighted [6]
 We will show the features of EasyText through a demo video.
 
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aJpaQB-ylks/0.jpg)](https://www.youtube.com/watch?v=aJpaQB-ylks)
 
-[![NetFlix on UWP](https://github.com/loopback00/EasyText/blob/main/screenshot.png)](https://youtu.be/aJpaQB-ylks)
 
 
 
