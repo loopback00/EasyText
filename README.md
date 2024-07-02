@@ -58,6 +58,9 @@ content that is still highlighted [6]
 We will show the features of EasyText through a demo video.
 
 
+[![IMAGE ALT TEXT]()](https://1327203722.vod-qcloud.com/da996d06vodsh1327203722/1af5e7f51253642699594179806/BcTNTU5cqOkA.mp4 "Demo Video")
+
+
 
 
 
