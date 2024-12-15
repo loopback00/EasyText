@@ -53,7 +53,6 @@ content that is still highlighted [6]
 
 #### live demo website    http://49.232.199.229:300/
 
-**The online website uses commercial LLM. We have prepared a certain quota of tokens, so this experience link will not always be valid.**
 
 We will show the features of EasyText through a demo video.
 
