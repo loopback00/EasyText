@@ -41,6 +41,8 @@ semantic faithfulness and reduced complexity tailored to individual needs.
 
 #### live demo website http://49.232.199.229:300/
 
+In demo website, the llm chosed is Deepseek, due to it price.
+
 We will show the features of EasyText through a demo video.
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aJpaQB-ylks/0.jpg)](https://youtu.be/JawQWmqrZVw?si=6FZ1qRGjfgHTvUTl)
