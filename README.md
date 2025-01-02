@@ -39,9 +39,13 @@ semantic faithfulness and reduced complexity tailored to individual needs.
 
 ## 👾 Simple Demo Video
 
-#### live demo website http://49.232.199.229:300/
+#### live demo website http://49.232.199.229:400/
 
-In demo website, the llm chosed is Deepseek, due to it price.
+### Note!
+
+##### We recently updated EasyText to provide two more detailed interactive frontends, one is a questionnaire, which can be visited by registered users, but it does not require registration to experience it.
+
+##### Another way is for users to judge the difficulty of four articles of different difficulty given by us, so as to get the user's ability level.
 
 We will show the features of EasyText through a demo video.
 
