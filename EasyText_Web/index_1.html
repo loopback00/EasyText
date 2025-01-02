@@ -18,6 +18,11 @@
     <script src="src/index.js"></script>
     <title>demo</title>
     <style>
+         .ui-textarea textarea {
+        white-space: pre-wrap; /* 保留换行符 */
+        word-wrap: break-word; /* 自动换行 */
+    }
+
      
     </style>
 </head>
@@ -81,10 +86,19 @@
     new Vue({
         el: '#app',
         data:  {
-            user_input:"",
+            ruler_int:sessionStorage.getItem("activte"),
+            user_input:"In Corolla, North Carolina, a small island known for its wild mustangs, these horses face numerous challenges. The mustangs, also known as mustangs, are free-roaming and not owned by anyone. Their origins are a mystery, but researchers believe they may have belonged to Spanish explorers whose ships got stranded near the island, forcing the horses to swim ashore. Despite the harsh weather, including hurricanes, the mustangs have survived for hundreds of years without barns or shelter.\nHowever, the Corolla herd is now facing new and significant problems. While hurricanes were once their biggest threat, human activity has become a major issue. Many tourists visit Corolla to see the famous wild horses, but some visitors disturb the animals or leave trash in their habitat. Additionally, vacation homes built near the beach to allow people to observe the mustangs are encroaching on their limited space. The mustangs cannot leave the island to find safer or more peaceful areas to live, nor can they find mates outside their herd, leading to inbreeding. This has resulted in serious health issues for their foals, such as broken legs or deformities.\nTo address these challenges, volunteers have come together to help save the Corolla herd. Their goal is to provide the mustangs with more space to roam and to increase the herd's population from 101 to 130 horses. To achieve this, they plan to bring wild horses from another island off North Carolina to introduce new genetic diversity, which will improve the health of future foals.\nDespite the efforts of volunteers and horse lovers, the Corolla herd still faces another problem: some horses cross into the island's wildlife refuge, which is home to endangered birds and nesting sea turtles. The government is concerned that the horses could harm these other animals. David Viker, a refuge manager, is working with a scientist to find ways to reduce the horses' disabilities and determine how many horses can coexist with the refuge's wildlife. Viker emphasizes the importance of the Corolla herd as an iconic symbol of the region, highlighting the need for a balanced solution that protects both the horses and the island's other inhabitants.",
         },
         methods:{
             jumpToNext(){
+                    if(this.ruler_int==0)
+                        sessionStorage.setItem("ruler",40);
+                    else if (this.ruler_int==1)
+                        sessionStorage.setItem("ruler",33);
+                    else if (this.ruler_int==2)
+                        sessionStorage.setItem("ruler",25);
+                    else if (this.ruler_int==3)
+                        sessionStorage.setItem("ruler",10);
                     sessionStorage.setItem("data",this.user_input);
                     window.location.href = 'test_js.html';
             }

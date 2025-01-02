@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/Textarea.css">
+    <link rel="stylesheet" href="css/common/ui/Select.css">
+    <link rel="stylesheet" href="css/operate.css">
+    <script src="src/ruler.js"></script>
+    <link rel="stylesheet" href="css/logo.css">
+    <script src="src/browser.js"></script>
+    <script src="src/ruler.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/dtd.js"></script>
+    <script src="src/domUtils.js"></script>
+    <script src="src/range.js"></script>
+    <script src="src/index.js"></script>
+    <title>demo</title>
+    <style>
+         .ui-textarea textarea {
+        white-space: pre-wrap; /* 保留换行符 */
+        word-wrap: break-word; /* 自动换行 */
+    }
+
+     
+    </style>
+</head>
+<body>
+<div id="app">
+   
+    <el-row>
+        <el-col :span="2">
+            <div style="height: 90px;">&nbsp;</div>
+        </el-col>
+
+        <el-col :span="4" >
+            <img src="assets/EasyText.png" style="width: 160px;">
+        </el-col>
+        <el-col :span="1" >
+            <div style="height: 30px;">&nbsp;</div>
+            
+        </el-col>
+        <el-col :span="10">
+            <el-row>
+                <div style="height: 25px;">&nbsp;</div>
+                <el-steps :active="active" finish-status="success">
+                    <el-step title="Level 1"></el-step>
+                    <el-step title="Level 2"></el-step>
+                    <el-step title="Level 3"></el-step>
+                    <el-step title="Level 4"></el-step>
+                </el-steps>
+            </el-row>
+
+            <el-row>
+                <el-col style="text-align: center;">
+                    <el-button plain  type="primary" style="margin-top: 12px; margin-right: 10px;" icon="el-icon-back" @click="back">Difficult</el-button>
+                    <el-button plain type="primary" style="margin-top: 12px;" icon="el-icon-right" @click="next">Easy</el-button>
+                </el-col>
+            </el-row>
+         
+           
+
+            <div style="height: 10px;"></div>
+           
+        </el-col>
+        <el-col :span="1" >
+            <div style="height: 30px;">&nbsp;</div>
+            
+        </el-col>
+        <el-col :span="2" >
+            <div style="height: 30px;">&nbsp;</div>
+            
+        </el-col>
+        <el-col :span="2">
+            <div style="height: 20px;"></div>
+            <el-button type="primary" icon="el-icon-caret-right" style="width: 75%;" @click="jumpToNext()">simplify</el-button>
+
+        </el-col>
+        <el-col :span="2">
+            <div style="height: 90px;">&nbsp;</div>
+        </el-col>
+    </el-row>
+   
+   
+
+    <el-row>
+        <el-col :span="6"><div>&nbsp;</div></el-col>
+        <el-col :span="12">
+            <div>
+                <form is-validate>
+                    <div class="ui-textarea"><textarea rows="25" v-model="user_input" placeholder="Please input your text here" style="background-color: aliceblue; font-size: 17px; border-radius: 15px;font-family: Arial, Helvetica, sans-serif;line-height: 1.5;word-spacing: 2px;"></textarea></div> 
+                </form>
+            </div>               
+        </el-col>
+        <el-col :span="6"><div>&nbsp;</div></el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="24">
+            <div style="height: 70px;"></div>
+        </el-col>
+    </el-row>
+    
+        
+</div>
+</body>
+
+<link rel="stylesheet" href="./element/element.css">
+<script src="./element/vue.js"></script>
+<script src="./element/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:  {
+            active: 0,
+            user_input:"WASHINGTON — Delivering a forceful argument on the role of the arts in education, Michelle Obama said Tuesday that it isn at something to be introduced after student test scores go up but is a critical element of achieving those higher test scores in the first place.\nThe lawyer-turned-first lady argued her case while opening the first White House student talent show, featuring spirited song and dance routines by students whose schools had performed so poorly they were chosen for a new federal arts education program.\nBy the end of the hour-long, toe-tapping, hand-clapping show in the East Room, which was bathed in a soothing orange light, Mrs. Obama had joined all the students on the makeshift stage to dance during their closing number, which shared its name with her husband as \"Yes We Can \" presidential campaign slogan.\nPresident Barack Obama even broke away from his work elsewhere in the White House to come and make his own pitch for arts education and to congratulate the elementary and middle school performers.\nThe talent show was a vehicle to showcase the \"Turnaround Arts \" program. It was created as an experiment in 2012 by the President as Committee on the Arts and the Humanities in collaboration with the White House and the Education Department to test whether arts education can help improve student outcomes and create more positive learning environments. Major artists adopted each school.\nEncouraged by the results so far, including higher reading and math scores and fewer disciplinary problems, Mrs. Obama announced that the program is being expanded this year from the original eight schools to 35 schools in 10 states — Iowa, Massachusetts, Connecticut, Louisiana, Oregon, Montana, Colorado, California, Illinois, Minnesota — and the District of Columbia.\nTwo of the original eight schools have improved so much that they are no longer in \"turnaround \" status, she said. Those schools are Findley Elementary School in Des Moines, Iowa, and Orchard Gardens in Boston.\nThe arts, the first lady said, help get students excited about taking their seats in class because they are looking forward to the next musical they are performing in or the instrument they can at wait to play.\n \"But if they are not in their seats then we can at teach them anything at all, \" Mrs. Obama said. \"The bottom line here is very clear: Arts education isn at something we add on after we ave achieved other priorities, like raising test scores and getting kids into college. It as actually critical for achieving those priorities in the first place. \"\nSix million children do not have access to art or music instruction in their schools, and millions more schoolchildren have only minimal exposure to the arts, she said.\nIn a surprise appearance, the president made his own pitch for arts education. He said it is a necessity, not a luxury.\n \"The arts are central to who we are as a people, and they are central to the success of our kids. This is not an afterthought, \" he said. \"This is not something you do because it as kind of nice to do. It is necessary for these young people to succeed that we promote the arts. \"\nA few big-name artists, such as actresses Sarah Jessica Parker and Alfre Woodard, performed with students from the schools they have adopted, in Portland, Ore., and New Orleans, respectively. They also spoke about the change they have seen in their students.\n \"Our kids are glimpsing the fact that they have an inherent value and that confidence just spreads across their lives, \" Woodard said.\nStudents spoke about what the arts mean to them, too.\n \"I think that the arts are important to our school because it gives kids an opportunity to see what they want to do in their life as careers and then also because it gives students a level of confidence, \" said 8-year-old Sinai Jones, who attends the Martin Luther King Jr. School in Portland.\nSinai and an all-girl group that included Parker on backup performed \"You are Never Fully Dressed Without a Smile \" from the musical \"Annie. \"\nThe expanded program will be paid for over the next three years with $5 million in public and private funding from the Education Department, the National Endowment of the Arts, the Ford Foundation and other private foundations and companies.",
+        },
+        methods:{
+            jumpToNext(){
+                    sessionStorage.setItem("data",this.user_input);
+                    sessionStorage.setItem("activte",this.active);
+                    window.location.href = 'index_1.html';
+            },
+            next() {
+            if (this.active >= 3) this.active = 0;
+            else this.active++;
+            },
+            back() {
+            if (this.active > 0) this.active --;
+            }
+                
+        }, 
+        watch:{
+            active(value){
+               
+                if (value===0){    
+                    this.user_input="WASHINGTON — Delivering a forceful argument on the role of the arts in education, Michelle Obama said Tuesday that it isn at something to be introduced after student test scores go up but is a critical element of achieving those higher test scores in the first place.\nThe lawyer-turned-first lady argued her case while opening the first White House student talent show, featuring spirited song and dance routines by students whose schools had performed so poorly they were chosen for a new federal arts education program.\nBy the end of the hour-long, toe-tapping, hand-clapping show in the East Room, which was bathed in a soothing orange light, Mrs. Obama had joined all the students on the makeshift stage to dance during their closing number, which shared its name with her husband as \"Yes We Can \" presidential campaign slogan.\nPresident Barack Obama even broke away from his work elsewhere in the White House to come and make his own pitch for arts education and to congratulate the elementary and middle school performers.\nThe talent show was a vehicle to showcase the \"Turnaround Arts \" program. It was created as an experiment in 2012 by the President as Committee on the Arts and the Humanities in collaboration with the White House and the Education Department to test whether arts education can help improve student outcomes and create more positive learning environments. Major artists adopted each school.\nEncouraged by the results so far, including higher reading and math scores and fewer disciplinary problems, Mrs. Obama announced that the program is being expanded this year from the original eight schools to 35 schools in 10 states — Iowa, Massachusetts, Connecticut, Louisiana, Oregon, Montana, Colorado, California, Illinois, Minnesota — and the District of Columbia.\nTwo of the original eight schools have improved so much that they are no longer in \"turnaround \" status, she said. Those schools are Findley Elementary School in Des Moines, Iowa, and Orchard Gardens in Boston.\nThe arts, the first lady said, help get students excited about taking their seats in class because they are looking forward to the next musical they are performing in or the instrument they can at wait to play.\n \"But if they are not in their seats then we can at teach them anything at all, \" Mrs. Obama said. \"The bottom line here is very clear: Arts education isn at something we add on after we ave achieved other priorities, like raising test scores and getting kids into college. It as actually critical for achieving those priorities in the first place. \"\nSix million children do not have access to art or music instruction in their schools, and millions more schoolchildren have only minimal exposure to the arts, she said.\nIn a surprise appearance, the president made his own pitch for arts education. He said it is a necessity, not a luxury.\n \"The arts are central to who we are as a people, and they are central to the success of our kids. This is not an afterthought, \" he said. \"This is not something you do because it as kind of nice to do. It is necessary for these young people to succeed that we promote the arts. \"\nA few big-name artists, such as actresses Sarah Jessica Parker and Alfre Woodard, performed with students from the schools they have adopted, in Portland, Ore., and New Orleans, respectively. They also spoke about the change they have seen in their students.\n \"Our kids are glimpsing the fact that they have an inherent value and that confidence just spreads across their lives, \" Woodard said.\nStudents spoke about what the arts mean to them, too.\n \"I think that the arts are important to our school because it gives kids an opportunity to see what they want to do in their life as careers and then also because it gives students a level of confidence, \" said 8-year-old Sinai Jones, who attends the Martin Luther King Jr. School in Portland.\nSinai and an all-girl group that included Parker on backup performed \"You are Never Fully Dressed Without a Smile \" from the musical \"Annie. \"\nThe expanded program will be paid for over the next three years with $5 million in public and private funding from the Education Department, the National Endowment of the Arts, the Ford Foundation and other private foundations and companies.";
+                }
+
+                else if (value===1) {
+                    this.user_input="WASHINGTON — On Tuesday, Michelle Obama delivered a forceful argument for the importance of the arts in education. The arts, the first lady said, aren at something to be introduced after student test scores go up. To the contrary, they are a critical element of achieving those higher test scores in the first place.\nMrs. Obama argued her case while opening the first White House student talent show. This featured spirited song and dance routines by students whose schools had performed so poorly they were chosen for a new federal arts education program.\nBy the end of the hour-long, toe-tapping, hand-clapping show in the East Room, Mrs. Obama had joined all the students on the makeshift stage to dance during their closing number. It shared its name with her husband as \"Yes We Can \" presidential campaign slogan.\n## President Drops By\nPresident Barack Obama even broke away from his work elsewhere in the White House for a surprise appearance and to make his own pitch for arts education. The president also made a point of congratulating the elementary and middle school performers.\nThe talent show was a vehicle to showcase the \"Turnaround Arts \" program. This was created as an experiment in 2012 by the President as Committee on the Arts and the Humanities in collaboration with the White House and the Education Department. Its purpose is to test whether arts education can help improve student outcomes and create more positive learning environments. Major artists adopted each school.\nEncouraged by the results so far, including higher reading and math scores and fewer disciplinary problems, Mrs. Obama announced that the program is being expanded this year. It is growing from the original eight schools to 35 schools in 10 states and the District of Columbia. Those 10 states are Iowa, Massachusetts, Connecticut, Louisiana, Oregon, Montana, Colorado, California, Illinois and Minnesota.\nTwo of the original eight schools have improved so much that they are no longer in need of \"turnaround, \" she said. Those schools are Findley Elementary School in Des Moines, Iowa, and Orchard Gardens in Boston.\n## The Arts In Every School\nThe arts, the first lady said, help get students excited about taking their seats in class. Students are happy to be in school because they are looking forward to the next musical they are performing in or the instrument they can at wait to play.\n \"But if they are not in their seats then we can at teach them anything at all, \" Mrs. Obama said. \"The bottom line here is very clear: Arts education isn at something we add on after we ave achieved other \" goals, \"like raising test scores and getting kids into college. It as actually critical for achieving those \" goals \"in the first place. \"\nSix million children do not have access to art or music instruction in their schools. Millions more have only minimal exposure to the arts, she said.\nThe president added that arts education is a necessity, not a luxury.\n \"The arts are central to who we are as a people, and they are central to the success of our kids. This is not an afterthought, \" he said. \"This is not something you do because it as kind of nice to do. It is necessary for these young people to succeed that we promote the arts. \"\n## Actors Work With Their Adopted Schools\nA few big-name artists, such as actresses Sarah Jessica Parker and Alfre Woodard, performed with students from the schools they have adopted, in Portland, Ore., and New Orleans, respectively. They also spoke about the changes they have seen in their students.\n \"Our kids are glimpsing the fact that they have \" worth, Woodard said. \"That confidence just spreads across their lives. \"\nStudents spoke about what the arts mean to them, too.\n \"I think that the arts are important to our school because it gives kids an opportunity to see what they want to do in their life as careers and then also because it gives students a level of confidence, \" said 8-year-old Sinai Jones, who attends the Martin Luther King Jr. School in Portland.\nSinai and an all-girl group that included Parker on backup performed \"You are Never Fully Dressed Without a Smile \" from the musical \"Annie. \"\nThe expanded program will be paid for over the next three years with $5 million in public and private funding. Money will come from the Education Department, the National Endowment of the Arts, the Ford Foundation and other private foundations and companies."
+                }
+                else if(value===2){
+                    this.user_input="WASHINGTON — On Tuesday, Michelle Obama made a forceful argument for the importance of the arts in education. The arts, the first lady said, aren at something to be introduced after student test scores go up. Rather, they are critical to achieving those higher test scores in the first place.\nObama argued her case while opening the first White House student talent show. This featured spirited song and dance numbers from a group of student performers. The children all attend schools that have been performing very poorly. In an effort to turn things around, their schools were chosen for a new federal arts education program.\nBy the end of the hour-long show, Mrs. Obama had joined the students on stage to dance with them during their closing number.\nPresident Barack Obama even broke away from his work to surprise the group and make his own pitch for arts education. The president congratulated the elementary and middle school performers.\n## The Arts Program Is Working\nThe talent show was conceived as a way to showcase the \"Turnaround Arts \" program. This was created as an experiment in 2012. Its purpose is to test whether arts education can help improve student test scores and make students feel better about school. Major artists adopted each school.\nEncouraged by the results so far, including higher reading and math scores, Mrs. Obama announced that the program is being expanded this year. It is growing from the original eight schools to 35 schools in 10 states and the District of Columbia. Those 10 states are: Iowa, Massachusetts, Connecticut, Louisiana, Oregon, Montana, Colorado, California, Illinois and Minnesota.\nTwo of the original eight schools have improved so much they are no longer in need of \"turnaround, \" she said. Those schools are Findley Elementary School in Iowa and Orchard Gardens in Boston.\n## Take A Seat And Succeed\nThe arts, the first lady said, help get students excited about taking their seats in class. Students are happy to be in school. They look forward to the next musical they are performing in or the instrument they can at wait to play.\n \"But if they are not in their seats then we can at teach them anything at all, \" Mrs. Obama said. \"The bottom line here is very clear: Arts education isn at something we add on after we ave achieved other \" goals, \"like raising test scores and getting kids into college. It as actually critical for achieving those \" goals \"in the first place. \"\nSix million children do not have art or music instruction in their schools. Millions more get only a very slight amount of arts education, she said.\nThe president added that arts education is a necessity, not a luxury.\n \"The arts are central to who we are as a people, and they are central to the success of our kids. This is not an afterthought, \" he said. \"This is not something you do because it as kind of nice to do. It is necessary for these young people to succeed that we promote the arts. \"\n## Stars And Students Perform Together\nA few big-name artists, such as actresses Sarah Jessica Parker and Alfre Woodard, were at the White House event. The stars performed with students from the schools they have adopted. They also spoke about the change they have seen in their students.\n \"Our kids are glimpsing the fact that they have \" worth, Woodard said. \"That confidence just spreads across their lives. \"\nStudents spoke about what the arts mean to them, too.\n \"I think that the arts are important to our school, \" said 8-year-old Sinai Jones, who attends Martin Luther King Jr. School in Oregon. Arts education gives kids \"an opportunity to see what they want to do in their life as careers \" and \"a level of confidence. \"\nAt the White House on Tuesday, Sinai was in an all-girl singing group that included Parker on backup. The group performed \"You are Never Fully Dressed Without a Smile \" from the musical \"Annie. \"";
+                }
+                else {
+                    this.user_input="WASHINGTON — On Tuesday, Michelle Obama strongly declared that the arts belong in schools and are an important part of a student as education.\nThe arts, the first lady said, shouldn at just be an add-on to be introduced only after student test scores go up. Rather, they are a necessary part of the school day. They can help students achieve those higher test scores in the first place.\nMrs. Obama made her comments while opening the first-ever White House student talent show. It featured spirited song and dance from a group of student performers. The students all attend schools that have been performing poorly. To turn things around, their schools were chosen for a new arts education program.\nBy the end of the hour-long show, Mrs. Obama joined the students on stage, dancing with them during their closing number.\nPresident Barack Obama showed up as well. He broke away from his work to make his own pitch for arts education. The president also congratulated the student performers.\n## Arts + Excited Students = Better Grades\nTuesday as talent show was meant to showcase the \"Turnaround Arts \" program. This was created as an experiment in 2012. Its purpose is to see whether arts education can improve test scores and make students feel better about school. Famous artists adopted each school in the program.\nSo far, things have been going well: Reading and math scores have gone up. Encouraged by those results, Mrs. Obama announced that the program is being expanded this year. It is growing from the original eight schools to 35 schools.\nTwo of the original schools have already improved dramatically, she said. They have improved so much they are no longer in need of \"turnaround. \"\nThe arts, the first lady said, help get students excited about taking their seats in class. Students are happy to be in school. They look forward to the next musical they are performing in, or the instrument they can at wait to play.\n \"But if they are not in their seats then we can at teach them anything at all, \" Mrs. Obama said. \"The bottom line here is very clear: Arts education isn at something we add on. \" Arts, she said, shouldn at be introduced after goals \"like raising test scores and getting kids into college \" have been achieved. They are actually all-important to achieving those goals \"in the first place. \"\n## President Says More Kids Need Arts Education\nSix million children do not have art or music instruction in their schools, she said. Millions more get only a very slight amount of arts education.\nIn his surprise appearance, the president made his own pitch for arts education.\n \"The arts are central to who we are as a people, and they are central to the success of our kids. This is not an afterthought, \" he said. \"This is not something you do because it as kind of nice to do. It is necessary for these young people. \"\nA few big-name artists, such as actresses Sarah Jessica Parker and Alfre Woodard, were at the White House event. The stars performed with students from the schools they have adopted. They also spoke about the changes they have seen in their students.\n## Happy Changes\n \"Our kids are glimpsing the fact that they have \" worth, Woodard said. \"That confidence just spreads across their lives. \"\nStudents spoke about what the arts mean to them, too.\n \"I think that the arts are important to our school, \" said 8-year-old Sinai Jones from Oregon. Arts education gives kids \"an opportunity to see what they want to do in their life, \" she said. It gives them \"a level of confidence. \"\nAt the White House, Sinai was in an all-girl singing group. The students performed \"You are Never Fully Dressed Without a Smile \" from the musical \"Annie \" and Parker sang backup.";
+                }
+                console.log(this.user_input)
+            },
+        }
+               
+        })
+        
+   
+ 
+</script>
+</html>

@@ -215,7 +215,7 @@
                  }
                 this.fullscreenLoading = true;
                 this.fullText_2=this.fullText_1
-                axios.get('http://127.0.0.1:5000/',{
+                axios.get('http://49.232.199.229:5000/',{
                     params:{s1:this.user_input,s2:rulerText3.value}
                 })
             .then((response) => {
@@ -238,15 +238,15 @@
                     temp=""
                     console.log(1)
                     if (data[i][0]=="2"){
-                        temp=highlightPartialText_word(data[i])
+                        temp=" "+highlightPartialText_word(data[i])
                         temp1=temp1+temp
                     }
                     else if(data[i][0]=="1"){ 
-                        temp=data[i][1]
+                        temp=" "+data[i][1]
                         temp1=temp1+temp
                     }
                     else{
-                        temp_2=highlightPartialText_sentence(data[i])
+                        temp_2=" "+highlightPartialText_sentence(data[i])
                         temp1=temp1+temp_2}
                 }
                 showText=showText+temp1+"<br>"
@@ -281,12 +281,13 @@
                     else{
                     var lan=1
                     }
-                    axios.get('http://127.0.0.1:5000/router2',{
+                    axios.get('http://49.232.199.229:5000/router2',{
                     params:{s1:text,s2:rulerText3.value,s3:2}
                 })
                 .then((response) => {
                     this.response_data_1=response.data
                     console.log("length",this.response_data_1.length)
+                     console.log(this.response_data_1)
                   
                     this.fullscreenLoading = false;
                     data1=this.response_data_1
@@ -296,15 +297,15 @@
                         data=data1[j]
                         for(let i=0;i<data.length;i++){
                             if (data[i][0]=="1"){
-                                temp=highlightPartialText_word(data[i])
+                                temp=" "+highlightPartialText_word(data[i])
                                 temp1=temp1+temp
                             }
                             else if(data[i][0]=="0"){ 
-                                temp=data[i][1]
+                                temp=" "+data[i][1]
                                 temp1=temp1+temp
                             }
                             else {
-                                temp_2=highlightPartialText_sentence(data[i])
+                                temp_2=" "+highlightPartialText_sentence(data[i])
                                 temp1=temp1+temp_2
                             }
                         }
@@ -332,7 +333,7 @@
                     else{
                     var lan=1
                     }
-                    axios.get('http://127.0.0.1:5000/router2',{
+                    axios.get('http://49.232.199.229:5000/router2',{
                     params:{s1:text,s2:rulerText3.value,s3:2}
                 })
                 .then((response) => {
@@ -347,15 +348,15 @@
                         data=data1[j]
                         for(let i=0;i<data.length;i++){
                             if (data[i][0]=="1"){
-                                temp=highlightPartialText_word1(data[i])
+                                temp=" "+highlightPartialText_word1(data[i])
                                 temp1=temp1+temp
                             }
                             else if(data[i][0]=="0"){ 
-                                temp=data[i][1]
+                                temp=" "+data[i][1]
                                 temp1=temp1+temp
                             }
                             else {
-                                temp_2=highlightPartialText_sentence1(data[i])
+                                temp_2=" "+highlightPartialText_sentence1(data[i])
                                 temp1=temp1+temp_2
                             }
                         }
@@ -548,7 +549,7 @@
         el: "ruler3", //容器id
         height: 40, //刻度尺高度
         maxScale: 85, //最大刻度
-        startValue: 20, //刻度开始的初始值
+        startValue: sessionStorage.getItem("ruler"), //刻度开始的初始值
         region: [0, 80], //选择刻度的区间范围
         background: "WhiteSmoke", //刻度尺背景色
         // color: "black", //刻度线和字体的颜色
