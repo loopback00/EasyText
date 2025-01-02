@@ -43,9 +43,11 @@ semantic faithfulness and reduced complexity tailored to individual needs.
 
 ### Note!
 
-##### We recently updated EasyText to provide two more detailed interactive frontends, one is a questionnaire, which can be visited by registered users, but it does not require registration to experience it.
+We recently updated EasyText to provide two more detailed interactive frontends, one is a questionnaire, which can be visited by registered users, but it does not require registration to experience it.
 
-##### Another way is for users to judge the difficulty of four articles of different difficulty given by us, so as to get the user's ability level.
+Another way is for users to judge the difficulty of four articles of different difficulty given by us, so as to get the user's ability level.
+
+### Video
 
 We will show the features of EasyText through a demo video.
 
