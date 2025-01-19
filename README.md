@@ -51,7 +51,7 @@ Another way is for users to judge the difficulty of four articles of different d
 
 We will show the features of EasyText through a demo video.
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aJpaQB-ylks/0.jpg)](https://youtu.be/JawQWmqrZVw?si=6FZ1qRGjfgHTvUTl)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aJpaQB-ylks/0.jpg)](https://youtu.be/R_epYJPtquU)
 
 # 🚀 Getting Started
 
